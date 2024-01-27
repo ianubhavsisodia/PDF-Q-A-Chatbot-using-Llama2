@@ -1,0 +1,7 @@
+cassandra-driver
+cassio
+gradientai 
+llama-index
+pypdf
+tiktoken
+nest_asyncio
