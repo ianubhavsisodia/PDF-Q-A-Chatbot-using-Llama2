@@ -4,10 +4,10 @@ import json
 import os
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
-from llama_index import Settings, set_global_service_context
-from llama_index import VectorStoreIndex, SimpleDirectoryReader
-from llama_index.embeddings import GradientEmbedding
-from llama_index.llms import GradientBaseModelLLM
+from llama_index.core import ServiceContext, set_global_service_context
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.embeddings.gradient import GradientEmbedding
+from llama_index.llms.gradient import GradientBaseModelLLM
 from copy import deepcopy
 from tempfile import NamedTemporaryFile
 
@@ -17,7 +17,7 @@ nest_asyncio.apply()
 
 @st.cache_resource
 def create_datastax_connection():
-    cloud_config = {'secure_connect_bundle': 'secure-connect-Anubhav.zip'}
+    cloud_config = {'secure_connect_bundle': 'secure-connect-anubhav-db.zip'}
 
     with open("anubhavsisodia-token.json") as f:
         secrets = json.load(f)
