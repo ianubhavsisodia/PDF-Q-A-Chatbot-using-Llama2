@@ -4,7 +4,7 @@ import json
 import os
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
-from llama_index import ServiceContext, set_global_service_context
+from llama_index import Settings, set_global_service_context
 from llama_index import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.embeddings import GradientEmbedding
 from llama_index.llms import GradientBaseModelLLM
