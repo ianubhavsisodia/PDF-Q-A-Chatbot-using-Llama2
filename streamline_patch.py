@@ -1,20 +1,19 @@
+import streamlit as st
 import asyncio
-from streamlit import script_runner
 
-# Create and set up an event loop
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
+def main():
+    st.title("Async with Streamlit")
 
-# Run the Streamlit script with the patched event loop
-script_runner.ScriptRunner.scriptThreadEnviron['asyncio.EventLoopPolicy'] = (
-    asyncio.WindowsProactorEventLoopPolicy()
-)
-script_runner.ScriptRunner.scriptThreadEnviron["asyncio.events.new_event_loop"] = (
-    asyncio.ProactorEventLoop().new_event_loop
-)
-script_runner.ScriptRunner.scriptThreadEnviron["asyncio.events.get_event_loop"] = (
-    asyncio.ProactorEventLoop().get_event_loop
-)
+    # Run async code in a separate thread or use background tasks
+    if st.button("Run Async Task"):
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        result = loop.run_until_complete(async_task())
+        st.write(result)
 
-import main  # write the name of main python script here
+async def async_task():
+    await asyncio.sleep(2)  # Simulating an async task
+    return "Async Task Completed!"
 
+if __name__ == "__main__":
+    main()
